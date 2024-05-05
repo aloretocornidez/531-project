@@ -1,0 +1,11 @@
+---
+UseTab: Never
+IndentWidth: 2
+BreakBeforeBraces: Allman
+AllowShortIfStatementsOnASingleLine: true
+IndentCaseLabels: false
+ColumnLimit: 1000000
+# ReflowComment: false
+PenaltyBreakComment: 1000000000
+BreakConstructorInitializers: BeforeComma
+...
