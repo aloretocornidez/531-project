@@ -46,19 +46,16 @@
 
 \section{Introduction}
 %% Right now this is the proposal.
-The most common method for aircraft to report their system state involves the use of the Automatic Dependent Surveillance-Broadcast (ADS-B) transmission method. An open transmission method used to broadcast an aircraft's position, enabling the ability to track the aircraft.
-
-Throughout the Spring 2024 semester, we have worked with the ADA Pluto Software Defined Radio (SDR) to receive and transmit signals in multiple ranges of frequency bands. We have implemented pre-made signal processing blocks in GNURadio signal flow graphs and then implemented them on the ADA Pluto for applications such as FM Radio and AM radio. Our project would like to work on solving the "1090 MHz Riddle".
-
+The most common method for aircraft to report their system state involves the use of the Automatic Dependent Surveillance-Broadcast (ADS-B) transmission method.
+An open transmission method used to broadcast an aircraft's position, enabling the ability to track the aircraft.
+Throughout the Spring 2024 semester, we have worked with the ADA Pluto Software Defined Radio (SDR) to receive and transmit signals in multiple ranges of frequency bands.
+We have implemented pre-made signal processing blocks in GNURadio signal flow graphs and then implemented them on the ADA Pluto for applications such as FM Radio and AM radio.
+Our project would like to work on solving the "1090 MHz Riddle".
 What is the 1090 MHz Riddle you may ask? For many Software Defined Radio (SDR) enthusiasts, being able to capture, decode, interpret, and transmit ADS-B signals involves an understanding of how signals are are manipulated in the RF spectrum, both for transmission and modulation.
-
 In our particular case, we would like to implement the use of the 1090 MHz frequency band to communicate with public aircraft information.
-
 We have found pre-made GNURadio block that implement ADS-B communication protocols, however, we would like to explore a custom implementation using only a GNURadio signal flow graph and the QT GUI elements.
-
-After implementing a simple receiver and transmitter, we would like to expand the project scope to receive real ADS-B signals transmitted by aircraft. If this project goal is met, we would like to decode and interpret the data by plotting received data on a map.
-
-
+After implementing a simple receiver and transmitter, we would like to expand the project scope to receive real ADS-B signals transmitted by aircraft.
+If this project goal is met, we would like to decode and interpret the data by plotting received data on a map.
 
 \section{ADS-B Introduction}
 The ADS-B protocol is a used to transmit information about an aircraft while the aircraft is in flight. 
@@ -102,14 +99,25 @@ Results for the complete implementation can be found in the Results section of t
 %% Custom Antenna Design
 \subsection{Custom Antenna Design}
 
-%% GNURadio Signal Flow Graphs
-\subsection{GNURadio Signal Flow Graphs}
+%% Matlab Implementation
+\subsection{Matlab Implementation}
+ Using \cite{matlabAir} we created a working output that was able to read some mock data for an ADS-B transmissions.
+In addition to helping us verify the ability to work with ADS-B signals in MATLAB, we were able to see how data is interpreted using an approach in code. 
+However, the example given in the code was not useful in out manual implementation due to a lack of however level detail on ADS-B packet interpretation.
 
 %% Out of Tree Modules for GNURadio
 \subsection{Out of Tree Modules for GNURadio}
+Another approach that we decided to implement was the use of an out-out-tree (OOT) module \cite{oot-adsb} in GNURadio.
+To our surprise, there was already a GNURadio module available to help interpret received signals using the given framing, demodulating, and decoding, blocks given in the `gr-adsb` package.
+However, after multiple attempts trying to install the package on an arch-linux based system, python package management was not allowing us to work with the manually installed packages for the `gnuradio.adsb` python modules.
+Regardless, we spend a bit of time looking at the source code of each of the modules to see how we would be able to implement similar function using individual blocks in GNURadio that are part of the Core package within GNURadio.
 
-%% GNURadio Decoder
-\subsection{GNURadio Decoder}
+
+%% GNURadio Signal Flow Graphs
+\subsection{GNURadio Signal Flow Graphs}
+
+%% GNURadio Preamble
+\subsection{GNURadio Preamble}
 
 %% Procedure
 \section{Procedure}
