@@ -89,9 +89,9 @@ An ADS-B packet contains 112 bits. The packet contains 5 main parts. 5 bits are 
 
 Transmissions for ADS-B signals are made in the 1090 MHz frequency band which is within the capabilities of the ADALM-PLUTO, as such, the Pluto was used in our implementation. 
 We wanted to have the best chances of implementing a successful solution for for both receiving and transmitting data, we decided to design and make custom antennas for the project.
-After making our custom antennas, we wanted to do some initial testing with an MVP to make sure that data transfer was successful on the Pluto, because of this, we attempted to make two MVPs using different approaches.
+After making our custom antennas, we wanted to do some initial testing with an MVP to make sure that data transfer was successful on the Pluto, because of this, we attempted to make two minimum viable products (MVPs) using different approaches.
 The first approach involved the use of an ADS-B example provided by Mathworks in Matlab.
-the second MVP was the use of a GNURadio out of tree module that contains ADS-B framing, demodulation, and decoding blocks.
+The second MVP was the use of a GNURadio out of tree module that contains ADS-B framing, demodulation, and decoding blocks.
 After these two attempts were made, we created custom signal flow graphs that checked for an ADS-B frame preamble at the correct frequencies.
 More information about the implementations can be found below.
 Results for the complete implementation can be found in the Results section of the report.
