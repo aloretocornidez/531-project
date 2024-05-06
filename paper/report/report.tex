@@ -37,6 +37,9 @@
 
 \begin{abstract}
 %% Write Abstract Here
+
+ 
+
 \end{abstract}
 
 
@@ -55,13 +58,72 @@ We have found pre-made GNURadio block that implement ADS-B communication protoco
 
 After implementing a simple receiver and transmitter, we would like to expand the project scope to receive real ADS-B signals transmitted by aircraft. If this project goal is met, we would like to decode and interpret the data by plotting received data on a map.
 
-\section{Related Work}
 
-Checking Citation and then writing.\cite{testCite}
 
-\subsection{Convolution}
-\section{Methodology}
+\section{ADS-B Introduction}
+The ADS-B protocol is a used to transmit information about an aircraft while the aircraft is in flight. 
+The ADS-B can be used to transfer information about the aircraft's location, direction, and air speed. 
+This protocol is used by aircraft in many places around the world such as the United States, Canada, Europe, and Australia. 
+The United States made it a requirement to fly with ADS-B equipped aircraft in January 2020. 
+
+\section{ADS-B Frame Structure}
+Let us break down the frame structure of an ADS-B packet so that we can decode the information contained within. 
+
+An ADS-B packet contains 112 bits. The packet contains 5 main parts. 5 bits are used for the downlink format of the aircraft, 3 bits are used to relay transponder capability information. 24 bits are used to transmit the ICAO aircraft address. 56 bits are used to transmit an extended squitter message. 5 bits are used to for a type code. Finally, the last 24 bits are used as an error check for the integrity of the packet using a cyclic redundancy check. As you can see in \autoref{fig:ads-b-bits}, provided by \cite{sun1090mhz}, the total amount of bits that are used in a ADS-B packer is 112. In addition to the use of the 112 bits in the message, there is also a 16 bit preamble used for frame synchronization.
+
+% This is the table from https://mode-s.org/decode/content/ads-b/1-basics.html where the writer talks about the ads-b packet structure.
+\begin{figure}
+\begin{center}
+\begin{tabular}{ | c | c | c | c | }
+  Bit & No. Bits & Abbreviation & Information \\ 
+  1–5 & 5 & DF & Downlink Format \\
+  6–8 & 3 & CA & Transponder capability \\
+  9–32 & 24 & ICAO & ICAO aircraft address \\
+  33–88 & 56 & ME & Message, squitter \\
+  (33–37) & (5) & (TC) & (Type code) \\
+  89–112 & 24 & PI & Parity/Interrogator ID
+\end{tabular}
+\end{center}
+\caption{}\label{fig:ads-b-bits}
+\end{figure}
+
+%% Implementation
+\section{Implementation}
+
+Transmissions for ADS-B signals are made in the 1090 MHz frequency band which is within the capabilities of the ADALM-PLUTO, as such, the Pluto was used in our implementation. 
+We wanted to have the best chances of implementing a successful solution for for both receiving and transmitting data, we decided to design and make custom antennas for the project.
+After making our custom antennas, we wanted to do some initial testing with an MVP to make sure that data transfer was successful on the Pluto, because of this, we attempted to make two MVPs using different approaches.
+The first approach involved the use of an ADS-B example provided by Mathworks in Matlab.
+the second MVP was the use of a GNURadio out of tree module that contains ADS-B framing, demodulation, and decoding blocks.
+After these two attempts were made, we created custom signal flow graphs that checked for an ADS-B frame preamble at the correct frequencies.
+More information about the implementations can be found below.
+Results for the complete implementation can be found in the Results section of the report.
+
+%% Custom Antenna Design
+\subsection{Custom Antenna Design}
+
+%% GNURadio Signal Flow Graphs
+\subsection{GNURadio Signal Flow Graphs}
+
+%% Out of Tree Modules for GNURadio
+\subsection{Out of Tree Modules for GNURadio}
+
+%% GNURadio Decoder
+\subsection{GNURadio Decoder}
+
+%% Procedure
+\section{Procedure}
+
+%% Results
+\section{Results}
+
+%% Problems with Frame Synchronization
+\subsection{Problems with Frame Synchronization}
+
+%% Conclusion
 \section{Conclusion}
+
+
 
 
 
