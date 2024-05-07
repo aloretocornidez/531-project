@@ -183,6 +183,12 @@ After the threshold block, there is another GUI time sink to view the digitized 
 We also used a Correlate Access Code - Tag block to only allow signals that have the preamble within them to filter out non ADS-B signals.
 In cases where we wanted to use the signals that were passed through the Correlate Access Code - Tag block, we used a file sink that GNURadio writes to as a binary.
 A program was written in to read the data and decode the data.
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{./figures/fig_gnuradio_loopback_test.png}
+  \end{center}
+  \caption{Flowgraph for loopback testing of a smilated signal}\label{fig:loopback_grc}
+\end{figure}
 
 %% GNURadio Preamble
 \subsection{GNURadio Preamble}
