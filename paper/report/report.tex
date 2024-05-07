@@ -1,4 +1,4 @@
-\documentclass[conference]{IEEEtran}
+\documentclass[journal, onecolumn]{IEEEtran}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -36,7 +36,7 @@
 \end{IEEEkeywords}
 
 \begin{abstract}
-%% Write Abstract Here
+  %% TODO
 \end{abstract}
 
 
@@ -132,7 +132,7 @@ These results were excellent, and the low mismatch between $49.1+0.221j\Omega$ a
 \end{figure}
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.5\textwidth]{./figures/ffig_antenna_plot.png}
+    \includegraphics[width=0.5\textwidth]{./figures/fig_antenna_plot.png}
   \end{center}
   \caption{Antenna return loss plot}\label{fig:ant_data}
 \end{figure}
@@ -151,7 +151,8 @@ From the example given in the repository for the OOT module shown in \autoref{fi
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.5\textwidth]{./figures/adsb_rx.png}
+    % \includegraphics[width=1\textwidth]{./figures/adsb_rx.png}
+    \includegraphics[width=\textwidth]{./figures/adsb_rx.png}
   \end{center}
   \caption{A GNURadio signal flow graph that is given as an example in the git repo where the `gr-adsb` module is available.}\label{fig:gr-adsb-example}
 \end{figure}
@@ -159,30 +160,61 @@ From the example given in the repository for the OOT module shown in \autoref{fi
 However, after multiple attempts trying to install the package on an arch-linux based system, python package management was not allowing us to work with the manually installed packages for the `gnuradio.adsb` python modules.
 Regardless, we spent a bit of time looking at the source code of each of the modules to see how we would be able to implement similar function using individual blocks in GNURadio that are part of the Core package within GNURadio.
 
-% So while the `gr-adsb` OOT module was not very helpful to us in in the sens
-
-
-
-
 
 %% GNURadio Signal Flow Graphs
 \subsection{GNURadio Signal Flow Graphs}
-
+Implementing the actual communication protocol stack in GNURadio was done by using blocks that are part of the core library.
+An explanation of the pipeline is given below.
+First, we opened a connection to the PlutoSDR using the `PlutoSDR Source` block. 
+The Pluto ran at a sample rate of 12MHz centered about 1090MHz.
+RF and DC correction was enabled in addition to quadrature sampling.
+Following the Pluto block was a rational resampler block that was used to help us debug different sample rates and decimation factors to receive a message at that correct frequency.
+After the rational resampler, there was a complex number to magnitude squared to convert the complex number into a float value that was captured.
+A gain block was used to boost the received signal after it has been converted to a float value.
+From there, the signal flow graph breaks out into two blocks, first a GUI time sink that was used to view the actual signal that has been received.
+Second, a threshold block that digitizes the data, we experimented with the values for the low and high threshold values to find the digitization scheme that rendered the best results.
+After the threshold block, there is another GUI time sink to view the digitized data in comparison to the non-digitized data.
+We also used a Correlate Access Code - Tag block to only allow signals that have the preamble within them to filter out non ADS-B signals.
+In cases where we wanted to use the signals that were passed through the Correlate Access Code - Tag block, we used a file sink that GNURadio writes to as a binary.
+A program was written in to read the data and decode the data.
 
 %% GNURadio Preamble
 \subsection{GNURadio Preamble}
+%% TODO
+
 
 %% Procedure
-\section{Procedure}
+\section{Testing Procedure}
+To conduct testing for our generated signal flow graphs, we took our Pluto modules outside of the Electrical and Computer Engineering building at the University of Arizona and began looking for signals that matched the ADS-B protocol.
+In addition to listening at the University of Arizona, one of the members of our team lives near the airport, so we were able to listen to signals there as well. 
+We experimented with multiple gain values, digitization schemes, and error values for the ADS-B message preambles. 
+After spending a cumulative total of a few hours we went back inside to examine the data.
 
-%% Results
-\section{Results}
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{./figures/fig_decode_position.png}
+  \end{center}
+  \caption{A screenshot of the code used to examine the position of the airplane sending the ADB-S packet.}\label{fig:decode-position-adbs}
+\end{figure}
+
+\section{Decoding the Data}
+GNURadio writes data as a binary file when using the data sink, as such, we implemented the use of a C++ program to allow us to view and interpret the data. A program for opening and reading the data was made readily available on the GNURadio wiki page \cite{gnuradio-reading-file-cpp}. 
+The program uses the fmt library\cite{fmt-library} to display error messages.
+After ensuring that the program was able to compile we wrote additional code to decode the received packet's position as shown in \autoref{fig:decode-position-adbs}.
+
+
 
 %% Problems with Frame Synchronization
 \subsection{Problems with Frame Synchronization}
+%% TODO
+
+%% Results
+\section{Results}
+%% TODO 
 
 %% Conclusion
 \section{Conclusion}
+%% TODO
 
 
 
