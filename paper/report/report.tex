@@ -218,7 +218,7 @@ The beginning of an ADS-B frame consists 16 bits that make up the preamble of th
 
 %% Results
 \section{Results}
-%% TODO
+
 After having run through our implementation and procedure, we ended up having mixed results on our project. Running the implementation provided by MATLAB showed us that ADS-S packets could be interpreted in MATLAB, but this was not useful to us. The examples given to us in the OOT `gr-adsb` module did not work on our system due to package management issues in Python. Our GNURadio signal flow graphs did accomplish different parts of the experiment, however, we were unable to combine multiple parts of the signal flow graphs to 
 
 While we were able to successfully receive signals that were being sent in the 1090MHz range, we were unable to use the Correlate Access Code block to successfully filter out only the signals that were actual ADS-B signals. 
@@ -229,9 +229,7 @@ As you may have noticed, we used a sample packet that we created to check if our
 
 %% Conclusion
 \section{Conclusion}
-%% TODO
-
-
+Throughout this project, we had many interesting experiences that challenged our abilities in GNURadio. Attempting to build an ADS-B reciever allowed us to explore many tangential aspects of using a software defined radio, such as antenna design, antenna construction, data processing, and dealing with large quantites of binary data. While this project was not completely successful from a technical perspective, largely due to our difficulties in frame synchronization, it was very successful from an educational standpoint. We learned to apply digital signal processing concepts as well as communication theory to transmit test signals between SDRs and interpret afformentioned test signals. Overall we learned a significant amount from this project and have a newfound respect for radio engineers.
 
 
 
