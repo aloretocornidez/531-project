@@ -36,7 +36,7 @@
 \end{IEEEkeywords}
 
 \begin{abstract}
-  %% TODO
+
 \end{abstract}
 
 
@@ -218,13 +218,7 @@ The beginning of an ADS-B frame consists 16 bits that make up the preamble of th
 
 %% Results
 \section{Results}
-
-After having run through our implementation and procedure, we ended up having mixed results on our project. Running the implementation provided by MATLAB showed us that ADS-S packets could be interpreted in MATLAB, but this was not useful to us. The examples given to us in the OOT `gr-adsb` module did not work on our system due to package management issues in Python. Our GNURadio signal flow graphs did accomplish different parts of the experiment, however, we were unable to combine multiple parts of the signal flow graphs to 
-
-While we were able to successfully receive signals that were being sent in the 1090MHz range, we were unable to use the Correlate Access Code block to successfully filter out only the signals that were actual ADS-B signals. 
-
-As you may have noticed, we used a sample packet that we created to check if our decoder scheme was correct in out C++ implementation. 
-
+After having run through our implementation and procedure, we ended up having mixed results on our project. Running the implementation provided by MATLAB showed us that ADS-S packets could be interpreted in MATLAB, but this was not useful to us. The examples given to us in the OOT `gr-adsb` module did not work on our system due to package management issues in Python. Our GNURadio signal flow graphs did accomplish different parts of the experiment, however, we were unable to combine multiple parts of the signal flow graphs to accomplish all of the tasks in an automated way. While we were able to successfully receive signals that were being sent in the 1090MHz range, we were unable to use the Correlate Access Code block to successfully filter out only the signals that were actual ADS-B signals. As you may have noticed, we used a sample packet that we created to check if our decoder scheme was correct in out C++ implementation. This is because files that GNURadio wrote to an output were too large for us to use/filter through, as such, we created a sample packet to verify that our decoder worked. Luckily, the decoder did work. (after filtering out the preamble.) When using the file sink in GNURadio, we ran into the problem of too much data being recorded, this led to file sizes that were too large to work with. We tried to implement logic in GNURadio to only write to a file when a signal gets filtered through the Correlate Access Block, however, there were issues with that. One part of the experiment that was very successful was the custom antenna that we made to make sure that the SNR was sufficient to give us enough 'room' to raise the gain and receive signals at the University. This benefit was noticed when trying to receive signals using the antennas that came with the Pluto in comparison to the custom antenna we made. Funnily enough, the custom antenna was not needed when receiving signals next to the airport.
 
 
 %% Conclusion
