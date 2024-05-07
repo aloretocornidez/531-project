@@ -263,8 +263,9 @@ After ensuring that the program was able to compile we wrote additional code to 
 
 %% Problems with Frame Synchronization
 \subsection{Problems with Frame Synchronization}
-%% TODO
+During testing we noticed that there was a mismatch between the sample rate and data rate. Our data processing required one sample per data bit at 1MHz, however our sample rate had to be significantly higher to account for small variations in the analog signal. To try and account for this mismatch, we tried using a resampler block with the proper ratio to downsample the signal. Unfortuanely, this had the issue of shortening and lengthening some of the data bits when they were slightly out of sync with the lower sample rate, thus making the data incompatible with our data processing algorithm.  
 
+The beginning of an ADS-B frame consists 16 bits that make up the preamble of the frame. These 16 bits can be used to syncronize the beginning of the frame and mark the following data as a usable signal using the Corrolate Access Code-Tag block. With the afformentioned bit width issue, the preamble data was not conistant and could not be properly sycnronized at the beginning of the frame. We then attempted to increase the number of allowable errors in the preamble, but this did not solve the issue as all of the data was too inconsistent.
 %% Results
 \section{Results}
 %% TODO
