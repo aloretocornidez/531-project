@@ -209,12 +209,31 @@ After spending a cumulative total of a few hours we went back inside to examine 
   \caption{A screenshot of the code used to examine the position of the airplane sending the ADB-S packet.}\label{fig:decode-position-adbs}
 \end{figure}
 
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{./figures/fig_ADSB_recv_analog.png}
+  \end{center}
+  \caption{Analog ADS-B signal recieved by SDR}\label{fig:analog_rec}
+\end{figure}
+
 \section{Decoding the Data}
 GNURadio writes data as a binary file when using the data sink, as such, we implemented the use of a C++ program to allow us to view and interpret the data. A program for opening and reading the data was made readily available on the GNURadio wiki page \cite{gnuradio-reading-file-cpp}. 
 The program uses the fmt library\cite{fmt-library} to display error messages.
 After ensuring that the program was able to compile we wrote additional code to decode the received packet's position as shown in \autoref{fig:decode-position-adbs}.
 
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{./figures/fig_ADSB_recv_digital.png}
+  \end{center}
+  \caption{Digitized ADS-B signal from SDR}\label{fig:digital}
+\end{figure}
 
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{./figures/fig_gnuradio_fullUI.png}
+  \end{center}
+  \caption{GNURadio UI used for adjusting digitization settings}\label{fig:receive_UI}
+\end{figure}
 
 %% Problems with Frame Synchronization
 \subsection{Problems with Frame Synchronization}
