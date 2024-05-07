@@ -83,7 +83,6 @@ An ADS-B packet contains 112 bits. The packet contains 5 main parts. 5 bits are 
 
 %% Implementation
 \section{Implementation}
-
 Transmissions for ADS-B signals are made in the 1090 MHz frequency band which is within the capabilities of the ADALM-PLUTO, as such, the Pluto was used in our implementation. 
 We wanted to have the best chances of implementing a successful solution for for both receiving and transmitting data, we decided to design and make custom antennas for the project.
 After making our custom antennas, we wanted to do some initial testing with an MVP to make sure that data transfer was successful on the Pluto, because of this, we attempted to make two minimum viable products (MVPs) using different approaches.
@@ -104,8 +103,8 @@ This antenna, would give us better performance, while still having an extremely 
 
 Before constructing the antenna, we performed some quick calculations in order to determine the lengths of the copper wire required.
 We know that a full wavelength of 1090MHz is 27.
-5cm, and that since it is based on a dipole, the total length of the two elements should be ½ wavelength, thus 13.
-75cm, and with each element being the same length, we know that each element should be ¼ wavelength or 6.
+5cm, and that since it is based on a dipole, the total length of the two elements should be $\frac{1}{2}$ wavelength, thus 13.
+75cm, and with each element being the same length, we know that each element should be $\frac{1}{4}$ wavelength or 6.
 88cm long. In the process of fabrication, we were not exactly sure how the lengths of the elements would be measured after being soldered to the SMA connector, we then decided to cut each copper wire at 7.5cm, then trim them down afterwards while using a vector network analyzer to check reflections.
 
 After the wires had been cut and straightened, four of them were bent at 135 degree angle approximately 3mm from the end.
