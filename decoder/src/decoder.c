@@ -45,5 +45,5 @@ void convertPos(bool datain[128]) {
 	lat = 6 * (8 + (lat_bin / pow(2, 17)));
 	lon = 10 * (0 + (lon_bin / pow(2, 17)));
 	printf("\nLatitude:%f",lat);
-	printf("\nLongitude:%f", lon);
+	printf("\nLongitude:%f\n", lon);
 }
